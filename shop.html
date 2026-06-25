@@ -1,1125 +1,2728 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>Goldasht Shop</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
-  <style>
-  	
-      * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Zain', sans-serif;
-    }
-
-    body {
-      background: #0c0f15;
-      color: #eaeef2;
-      line-height: 1.7;
-      direction: rtl;
-    }
-
-    :root {
-      --primary: #f15a24;
-      --primary-glow: #f15a24b3;
-      --bg-card: #1a2532;
-      --glass-bg: rgba(20, 30, 40, 0.8);
-      --border-light: #2f4055;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #1e2b38;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 10px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #ff7b4a;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* هدر */
-    .header {
-      background: rgba(8, 14, 23, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #007bff;
-      padding: 0.7rem 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo h1 {
-      font-size: 1.5rem;
-      background: linear-gradient(135deg, #eaf2ff, #7c8cff, #5b6dff, #c7d2ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.2;
-    }
-    .logo span {
-      font-size: 0.75rem;
-      color: #9ab3cc;
-    }
-
-    .nav {
-      display: flex;
-      gap: 2rem;
-    }
-    .nav a {
-      color: #d1e2f2;
-      font-weight: 500;
-      transition: 0.3s;
-      position: relative;
-      padding: 0.3rem 0;
-    }
-    .nav a:hover {
-      color: var #007bff;
-    }
-    .nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: #007bff;
-      transition: 0.3s;
-    }
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: transparent;
-      color: #007bff;
-      padding: 0.3rem 1.2rem;
-      border-radius: 30px;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* بخش اصلی فروشگاه */
-
-
-    /* گرید محصولات */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .product-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid #ffffff20;
-      border-radius: 30px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: 0.4s;
-      box-shadow: 0 10px 20px #00000060;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: var(--primary);
-      box-shadow: 0 20px 30px var(--primary-glow);
-    }
-
-    .product-icon {
-      font-size: 4rem;
-      color: ;
-      margin-bottom: 1rem;
-    }
-    .product-title {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-      color: #fff;
-    }
-    .product-desc {
-      color: #c0d4e8;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-    .product-price {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ffae70;
-      margin-bottom: 1.5rem;
-    }
-    .product-price span {
-      font-size: 1rem;
-      color: #9bb7cc;
-      font-weight: normal;
-    }
-
-    .btn-shop {
-      background: var(--primary);
-      border: none;
-      color: #0b0f15;
-      padding: 0.8rem 2rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      border: 2px solid transparent;
-      margin-top: auto;
-    }
-    .btn-shop:hover {
-      background: #ff7b4a;
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px #f15a2440;
-    }
-
-    /* بخش ویژه (پرفروش‌ها) */
-    .featured-section {
-      margin: 4rem 0;
-      background: #101a24;
-      border-radius: 3rem;
-      padding: 3rem 2rem;
-    }
-    .featured-title {
-      font-size: 2.2rem;
-      color: var(--primary);
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    /* فوتر */
-    .footer {
-      text-align: center;
-      color: #aac2da;
-      margin-top: 4rem;
-
-    }
-
-    /* ریسپانسیو */
-    @media (max-width: 768px) {
-      .nav {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 1rem;
-        
-        padding: 1rem 0;
-      }
-      .nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .shop-header h2 {
-        font-size: 2.4rem;
-      }
-    }
-  
-:root {
-  --blue-1: #7c8cff;
-  --blue-2: #5b6dff;
-  --blue-3: #7b2cff;
-
-  --bg-1: #050505;
-  --bg-2: #0b0b0f;
-
-  --text-main: #f9f6ee;
-  --text-muted: #aaa39a;
-
-  --danger: #ff4f4f;
-  --accent: #8a5cff;
-}
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-  background:
-    radial-gradient(circle at 10% 0%, #1b1f4d 0, transparent 45%),
-    radial-gradient(circle at 90% 100%, #2b1648 0, transparent 50%),
-    radial-gradient(circle at 50% 0%, #222 0, #050505 65%);
-}
-
-    .wrapper {
-      width: 100%;
-      max-width: 960px;
-    }
-
-    .card {
-      position: relative;
-      border-radius: 18px;
-      padding: 24px 22px 20px;
-      background:
-        linear-gradient(135deg, rgba(124, 140, 255, 0.08), rgba(12, 12, 12, 0.9)),
-        radial-gradient(circle at 0 0, rgba(124, 140, 255, 0.35), transparent 55%);
-      border: 1px solid rgba(124, 140, 255, 0.35);
-      box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(124, 140, 255, 0.8), rgba(46, 204, 113, 0.3));
-      -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 16px;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-.logo-circle {
-  background:
-    conic-gradient(
-      from 210deg,
-      #dfe4ff,
-      #7c8cff,
-      #5b6dff,
-      #7b2cff,
-      #dfe4ff
-    );
-}
-
-.logo-circle-inner {
-  background:
-    radial-gradient(
-      circle at 30% 20%,
-      #ffffff,
-      #2a2f6a 60%,
-      #050505 100%
-    );
-}
-
-.brand-text-main {
-  background:
-    linear-gradient(
-      120deg,
-      #dfe4ff,
-      #7c8cff,
-      #5b6dff,
-      #7b2cff,
-      #dfe4ff
-    );
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-    .brand-sub {
-      font-size: 12px;
-      color: var(--green-1);
-      margin-top: 2px;
-    }
-
-    .badge {
-      border-radius: 999px;
-      border: 1px solid rgba(124, 140, 255, 0.6);
-      padding: 4px 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--green-1);
-      background: radial-gradient(circle at 0 0, rgba(124, 140, 255, 0.2), transparent 70%);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #24ff8d;
-      box-shadow: 0 0 8px rgba(36, 255, 141, 0.9);
-    }
-    
-    .red-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff0000;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 1);
-}
-
-    .form {
-      margin-top: 4px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 12px 16px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      font-size: 13px;
-    }
-
-    .field-label {
-      color: #ddd2bf;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .field-label span.info {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .field select,
-    .field input {
-      background: rgba(5, 5, 5, 0.9);
-      border-radius: 9px;
-      border: 1px solid rgba(124, 140, 255, 0.3);
-      padding: 7px 9px;
-      color: var(--text-main);
-      font: inherit;
-      outline: none;
-      transition: border 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-    }
-
-    .field select:focus,
-    .field input:focus {
-      border-color: var(--green-1);
-      box-shadow: 0 0 0 1px rgba(124, 140, 255, 0.4);
-      background: rgba(8, 8, 8, 0.95);
-    }
-
-    .field input[type="number"]::-webkit-inner-spin-button,
-    .field input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    .field input[type="number"] {
-      -moz-appearance: textfield;
-    }
-
-    .protocol-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .chip {
-      position: relative;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(124, 140, 255, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(124, 140, 255, 0.18), rgba(5, 5, 5, 0.96));
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #f3e7cd;
-      user-select: none;
-    }
-
-    .chip input {
-      display: none;
-    }
-
-    .chip-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: 1px solid rgba(124, 140, 255, 0.7);
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-      background: transparent;
-    }
-
-    .chip.active {
-      border-color: var(--green-1);
-      color: #121212;
-      background: linear-gradient(135deg, #d5f5e3, #7c8cff, #5b6dff);
-      box-shadow:
-        0 0 16px rgba(124, 140, 255, 0.8),
-        0 8px 18px rgba(0, 0, 0, 0.8);
-    }
-
-    .chip.active .chip-dot {
-      background: #111;
-      border-color: #111;
-    }
-
-    .footer-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-      margin: 16px 0 8px;
-    }
-
-    .hints {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 10px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .hint-pill {
-      border-radius: 999px;
-      border: 1px solid rgba(112, 112, 112, 0.7);
-      padding: 3px 9px;
-      background: rgba(0, 0, 0, 0.5);
-    }
-
- .btn-primary {
-  border-radius: 999px;
-  border: none;
-  padding: 9px 24px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  color: #111;
-
-background: linear-gradient(135deg, #eaf2ff, #7c8cff, #5b6dff, #c7d2ff);
-
-  box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(124, 140, 255, 0.6);
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
-  white-space: nowrap;
-}
-    .btn-primary span.icon {
-      font-size: 15px;
-      color: #FFFFFF
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .product-card {
-      background:         linear-gradient(135deg, rgba(124, 140, 255, 0.08), rgba(12, 12, 12, 0.9)),
-        radial-gradient(circle at 0 0, rgba(124, 140, 255, 0.35), transparent 55%);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(124, 140, 255, 0.35);
-      border-radius: 30px;
-      padding: 24px 22px 20px;
-      text-align: center;
-      transition: 0.4s;
-      box-shadow: 0 10px 20px #00000060;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: rgba(124, 140, 255, 0.25);
-      box-shadow: 0 20px 30px rgba(124, 140, 255, 0.25);
-    }
-
-    .product-icon {
-      font-size: 4rem;
-      color: #b8d0e5;
-      margin-bottom: 1rem;
-    }
-    .product-title {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-      color: #fff;
-    }
-    .product-desc {
-      color: #c0d4e8;
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-    .product-price {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ffae70;
-      margin-bottom: 1.5rem;
-    }
-    .product-price span {
-      font-size: 1rem;
-      color: #9bb7cc;
-      font-weight: normal;
-    }
-
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-      box-shadow:
-        0 13px 28px rgba(0, 0, 0, 0.9),
-        0 0 24px rgba(124, 140, 255, 0.95);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0);
-      box-shadow:
-        0 6px 14px rgba(0, 0, 0, 0.9),
-        0 0 12px rgba(124, 140, 255, 0.7);
-    }
-
-    .output-wrapper {
-      margin-top: 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(124, 140, 255, 0.35);
-      background: radial-gradient(circle at 0 0, rgba(124, 140, 255, 0.17), rgba(4, 4, 4, 0.98));
-      padding: 10px 10px 8px;
-    }
-
-    .output-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .output-title {
-      font-size: 13px;
-      color: #d5f5e3;
-    }
-
-    .output-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .copy-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(124, 140, 255, 0.6);
-      padding: 4px 10px;
-      background: rgba(0, 0, 0, 0.85);
-      color: var(--green-1);
-      font-size: 11px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
-      white-space: nowrap;
-    }
-
-    .copy-btn:hover {
-      background: radial-gradient(circle at 0 0, rgba(124, 140, 255, 0.4), #020202);
-      box-shadow: 0 0 10px rgba(124, 140, 255, 0.7);
-      color: #111;
-    }
-
-    .copy-btn.copied {
-      background: rgba(46, 204, 113, 0.12);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 80px;
-      max-height: 165px;
-      resize: vertical;
-      border-radius: 10px;
-      border: 1px solid rgba(124, 140, 255, 0.25);
-      background: rgba(2, 2, 2, 0.97);
-      color: #d5f5e3;
-      font-family: monospace;
-      font-size: 11px;
-      padding: 7px 8px;
-      outline: none;
-      direction: ltr;
-    }
-
-    .meta {
-      margin-top: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 12px;
-    }
-
-    .meta strong {
-      color: #d5f5e3;
-    }
-
-    .error {
-      margin-top: 4px;
-      font-size: 11px;
-      color: var(--danger);
-      display: none;
-    }
-    
-    
-        .shop-container {
-      max-width: 1400px;
-      margin: 2rem auto;
-      padding: 0 5%;
-    }
-
-    .shop-header {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .shop-header h2 {
-      font-size: 5rem;
-      background: linear-gradient(135deg, #eaf2ff, #7c8cff, #5b6dff, #c7d2ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: linear-gradient(135deg, #eaf2ff, #7c8cff, #5b6dff, #c7d2ff);
-      display: inline-block;
-      border-bottom: linear-gradient(135deg, #eaf2ff, #7c8cff, #5b6dff, #c7d2ff);
-      padding-bottom: 0rem;
-    }
-    
-    .shop-header p {
-      color: #b8d0e5;
-      font-size: 1rem;
-      margin-top: 0rem;
-    }
-    
-    
-        .goz-container {
-      max-width: 1400px;
-      margin: 2rem auto;
-      padding: 0 5%;
-    }
-
-    .goz-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .goz-header h2 {
-      font-size: 2rem;
-      background: linear-gradient(135deg, #eaf2ff, #7c8cff, #5b6dff, #c7d2ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      display: inline-block;
-      border-bottom: 2px solid #007bff;
-      padding-bottom: 0.5rem;
-    }
-    .goz-header p {
-      color: #b8d0e5;
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    @media (max-width: 640px) {
-      .card { padding: 18px 14px 14px; }
-      .brand-text-main { font-size: 22px; }
-      .logo-circle { width: 34px; height: 34px; }
-      .footer-row { flex-direction: column-reverse; align-items: stretch; }
-      .btn-primary { justify-content: center; width: 100%; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>انجمن رگنار</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================ */
+        /* Reset & Base */
+        /* ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+        }
+        body {
+            background: #0a0e17;
+            color: #e8edf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px 16px 80px;
+            background-image: url('https://cdn.imgurl.ir/uploads/j7690_BG1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #0a0e17;
+        }
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+
+        /* ============================================ */
+        /* Login Page */
+        /* ============================================ */
+        .login-container {
+            position: relative;
+            z-index: 1;
+            max-width: 420px;
+            width: 100%;
+            padding: 40px 32px;
+            background: rgba(10, 14, 23, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 215, 0, 0.12);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .login-container.hidden {
+            display: none;
+        }
+        .login-container .logo {
+            font-size: 52px;
+            color: #ffd700;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 30px rgba(255, 184, 0, 0.15));
+        }
+        .login-container h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .login-container .subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 4px 0 24px;
+        }
+        .tab-buttons {
+            position: relative;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 22px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 40px;
+            padding: 4px;
+        }
+        .tab-slider {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            border-radius: 40px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 140, 0, 0.25));
+            transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        .tab-slider.login {
+            left: calc(50% + 0px);
+        }
+        .tab-slider.register {
+            left: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px 0;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s;
+        }
+        .tab-btn.active {
+            color: #ffd700;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: right;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-group label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 40px;
+            transition: all 0.3s;
+        }
+        .input-wrapper:focus-within {
+            border-color: rgba(255, 215, 0, 0.25);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .input-wrapper i {
+            position: absolute;
+            right: 16px;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 16px;
+        }
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 48px 12px 16px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            direction: rtl;
+        }
+        .input-wrapper input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #0b0f1a;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(255, 140, 0, 0.15);
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 140, 0, 0.25);
+        }
+        .message {
+            padding: 8px 14px;
+            border-radius: 40px;
+            font-size: 13px;
+            display: none;
+        }
+        .message.error {
+            display: block;
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 0, 0, 0.1);
+        }
+        .message.success {
+            display: block;
+            background: rgba(0, 255, 0, 0.06);
+            color: #55efc4;
+            border: 1px solid rgba(0, 255, 0, 0.06);
+        }
+        .login-footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding-top: 16px;
+        }
+
+        /* ============================================ */
+        /* Forum Wrapper */
+        /* ============================================ */
+        .forum-wrapper {
+            display: none;
+            width: 100%;
+            max-width: 880px;
+            padding: 20px 18px 90px;
+            background: rgba(10, 14, 23, 0.88);
+            backdrop-filter: blur(6px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            max-height: 98vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+        .forum-wrapper.active {
+            display: block;
+        }
+
+        /* ============================================ */
+        /* Bottom Navigation */
+        /* ============================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 880px;
+            display: none;
+            justify-content: space-around;
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 8px 6px;
+            border: 1px solid rgba(255, 215, 0, 0.06);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+        .bottom-nav.show {
+            display: flex;
+        }
+        .bottom-nav a {
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 4px 10px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-width: 48px;
+            position: relative;
+        }
+        .bottom-nav a i {
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .bottom-nav a:hover,
+        .bottom-nav a.active {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.06);
+        }
+        .bottom-nav a.active i {
+            color: #ffd700;
+        }
+        .bottom-nav a .badge {
+            position: absolute;
+            top: -2px;
+            right: 2px;
+            background: #ff6b6b;
+            color: #fff;
+            font-size: 9px;
+            border-radius: 50%;
+            padding: 1px 5px;
+            min-width: 16px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* ============================================ */
+        /* سایر استایل‌ها */
+        /* ============================================ */
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 14px;
+        }
+        .forum-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .forum-brand i {
+            font-size: 28px;
+            color: #ffd700;
+        }
+        .forum-brand span {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .forum-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .online-count {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .online-count i {
+            color: #55efc4;
+            font-size: 10px;
+        }
+
+        .user-panel {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 60px;
+            padding: 8px 18px 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+        .user-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #ffd700;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.08);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .user-info {
+            flex: 1;
+        }
+        .user-info .username {
+            font-weight: 700;
+            font-size: 17px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .user-info .username .verified {
+            color: #4a8af2;
+            font-size: 16px;
+        }
+        .user-badges {
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+            margin-top: 2px;
+            flex-wrap: wrap;
+        }
+        .badge-rank {
+            padding: 1px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .badge-rank.gold {
+            background: rgba(255, 215, 0, 0.12);
+            color: #ffd700;
+        }
+        .badge-rank.newbie {
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .badge-status {
+            color: #55efc4;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+        .user-stats-mini {
+            display: flex;
+            gap: 16px;
+        }
+        .user-stats-mini div {
+            text-align: center;
+        }
+        .user-stats-mini .num {
+            font-weight: 700;
+            font-size: 16px;
+            color: #fff;
+        }
+        .user-stats-mini .lbl {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .forum-toolbar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .search-box {
+            flex: 1;
+            min-width: 180px;
+            position: relative;
+        }
+        .search-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .search-box input {
+            width: 100%;
+            padding: 8px 44px 8px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 40px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: rgba(255, 215, 0, 0.15);
+        }
+        .filter-btns {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4px;
+            border-radius: 40px;
+        }
+        .filter-btn {
+            padding: 4px 14px;
+            border: none;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .filter-btn.active {
+            background: rgba(255, 215, 0, 0.08);
+            color: #ffd700;
+        }
+        .filter-btn:hover {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border: none;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #0b0f1a;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.2);
+        }
+        .btn-gold.small {
+            padding: 4px 12px;
+            font-size: 11px;
+        }
+        .btn-gold.danger {
+            background: linear-gradient(135deg, #ff6b6b, #c0392b);
+            color: #fff;
+        }
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 6px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        .stat-card i {
+            font-size: 22px;
+            color: #ffd700;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .stat-card .value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .stat-card .label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .announce {
+            background: rgba(255, 215, 0, 0.04);
+            border-right: 3px solid #ffd700;
+            padding: 10px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255, 215, 0, 0.02);
+            border-right-width: 3px;
+        }
+        .announce i {
+            color: #ffd700;
+            font-size: 18px;
+        }
+        .announce .text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .announce .text strong {
+            color: #ffd700;
+        }
+
+        .category {
+            margin-bottom: 22px;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .category-header .info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-header .info i {
+            color: #ffd700;
+            font-size: 16px;
+        }
+        .category-header .info .name {
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+        }
+        .category-header .info .count {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .topic-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+            margin-bottom: 2px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .topic-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 215, 0, 0.04);
+        }
+        .topic-main {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 180px;
+        }
+        .topic-status {
+            font-size: 14px;
+            min-width: 18px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .topic-title {
+            font-weight: 500;
+            color: #e8edf5;
+            font-size: 14px;
+        }
+        .topic-title:hover {
+            color: #ffd700;
+        }
+        .topic-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2px;
+            flex-wrap: wrap;
+        }
+        .topic-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .topic-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .topic-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .topic-badge {
+            font-size: 9px;
+            padding: 1px 10px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .topic-badge.hot {
+            background: rgba(255, 0, 0, 0.08);
+            color: #ff6b6b;
+        }
+        .topic-badge.closed {
+            background: rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .topic-badge.solved {
+            background: rgba(46, 204, 113, 0.08);
+            color: #55efc4;
+        }
+        .topic-badge.question {
+            background: rgba(74, 138, 242, 0.08);
+            color: #4a8af2;
+        }
+
+        .online-section {
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 16px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            margin-top: 20px;
+        }
+        .online-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 8px;
+        }
+        .online-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .online-user {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2px 12px;
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .online-user i {
+            color: #55efc4;
+            font-size: 8px;
+        }
+        .online-user .admin-tag {
+            font-size: 9px;
+            background: rgba(255, 0, 0, 0.06);
+            color: #ff6b6b;
+            padding: 0 6px;
+            border-radius: 30px;
+        }
+        .online-user .verified-tag {
+            color: #4a8af2;
+            font-size: 12px;
+        }
+
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        .member-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            margin-bottom: 2px;
+            border: 1px solid transparent;
+            transition: 0.2s;
+            flex-wrap: wrap;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .member-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .member-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .member-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #ffd700;
+            overflow: hidden;
+            border: 1px solid rgba(255, 215, 0, 0.04);
+        }
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .member-name {
+            font-weight: 500;
+            color: #e8edf5;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .member-name .verified {
+            color: #4a8af2;
+            font-size: 14px;
+        }
+        .member-role {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 0 8px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .member-status {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .member-status.online {
+            color: #55efc4;
+        }
+        .member-pm-btn {
+            font-size: 12px;
+            color: #4a8af2;
+            cursor: pointer;
+            padding: 0 6px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.04);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            color: #ffd700;
+            border: 3px solid rgba(255, 215, 0, 0.05);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-avatar:hover::after {
+            content: '\f030';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            font-size: 14px;
+            padding: 4px;
+            text-align: center;
+            color: #fff;
+        }
+        .profile-name {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .profile-name .verified {
+            color: #4a8af2;
+            font-size: 20px;
+        }
+        .profile-bio {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            margin: 4px 0 12px;
+        }
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .profile-stats div {
+            text-align: center;
+        }
+        .profile-stats .num {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .profile-edit-btn {
+            display: block;
+            margin: 16px auto 0;
+            width: fit-content;
+        }
+
+        .rule-item {
+            background: rgba(255, 255, 255, 0.01);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border-right: 2px solid #ffd700;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.02);
+            border-right-width: 2px;
+        }
+        .rule-item .title {
+            font-weight: 700;
+            color: #ffd700;
+            font-size: 14px;
+        }
+        .rule-item .content {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 2px;
+        }
+
+        .shop-placeholder {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .shop-placeholder i {
+            font-size: 48px;
+            color: rgba(255, 215, 0, 0.05);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .chat-box {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .chat-box input {
+            flex: 1;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 40px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            min-width: 140px;
+        }
+        .chat-box input:focus {
+            border-color: rgba(255, 215, 0, 0.15);
+        }
+
+        /* ============================================ */
+        /* Modal */
+        /* ============================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: rgba(18, 26, 40, 0.96);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 24px 20px;
+            max-width: 520px;
+            width: 92%;
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+        .modal-large {
+            max-width: 700px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
+        .modal-header h3 {
+            color: #ffd700;
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 28px;
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #ff6b6b;
+        }
+        .modal .form-group {
+            margin-bottom: 14px;
+        }
+        .modal .form-group label {
+            display: block;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 4px;
+        }
+        .modal input,
+        .modal textarea,
+        .modal select {
+            width: 100%;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 40px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+            font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+        }
+        .modal input:focus,
+        .modal textarea:focus,
+        .modal select:focus {
+            border-color: rgba(255, 215, 0, 0.1);
+        }
+        .modal textarea {
+            border-radius: 16px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        .modal select option {
+            background: #0b0f1a;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .modal-actions button {
+            flex: 1;
+            min-width: 80px;
+        }
+
+        .post-item {
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 6px;
+            border-right: 2px solid rgba(255, 215, 0, 0.04);
+        }
+        .post-item .post-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 4px;
+        }
+        .post-item .post-header .author {
+            color: #ffd700;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .post-item .post-header .author .verified {
+            color: #4a8af2;
+            font-size: 12px;
+        }
+        .post-item .post-content {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            white-space: pre-wrap;
+            margin: 4px 0;
+        }
+        .post-item .post-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+        .post-item .post-actions span {
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .post-item .post-actions span:hover {
+            color: #ffd700;
+        }
+        .post-item .post-actions .liked {
+            color: #ff6b6b;
+        }
+        .reply-quote {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 6px 12px;
+            border-radius: 8px;
+            border-right: 2px solid #4a8af2;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 6px;
+        }
+        .reply-quote .qauthor {
+            color: #4a8af2;
+            font-weight: 600;
+        }
+
+        .admin-panel .admin-user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            font-size: 13px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .admin-panel .admin-user-item .uname {
+            color: #fff;
+            font-weight: 500;
+        }
+        .admin-panel .admin-user-item .actions {
+            display: flex;
+            gap: 6px;
+        }
+        .admin-panel .admin-user-item .actions button {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.3);
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .admin-panel .admin-user-item .actions button:hover {
+            border-color: rgba(255, 215, 0, 0.1);
+            color: #ffd700;
+        }
+        .admin-panel .admin-user-item .actions button.danger:hover {
+            border-color: rgba(255, 0, 0, 0.1);
+            color: #ff6b6b;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 215, 0, 0.04);
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            max-width: 90%;
+            text-align: center;
+            font-weight: 500;
+        }
+        #toast.show {
+            display: block;
+            animation: fadeUp 0.3s ease-out;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @media(max-width:640px) {
+            .login-container {
+                padding: 28px 18px;
+            }
+            .forum-wrapper {
+                padding: 14px 10px 80px;
+            }
+            .forum-brand span {
+                font-size: 18px;
+            }
+            .user-panel {
+                padding: 6px 12px;
+                gap: 8px;
+            }
+            .user-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 22px;
+            }
+            .user-info .username {
+                font-size: 15px;
+            }
+            .user-stats-mini .num {
+                font-size: 14px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .topic-main {
+                min-width: 140px;
+            }
+            .bottom-nav a {
+                font-size: 9px;
+                min-width: 40px;
+            }
+            .bottom-nav a i {
+                font-size: 18px;
+            }
+            .modal {
+                padding: 18px 14px;
+            }
+        }
+        @media(max-width:400px) {
+            .forum-toolbar {
+                flex-direction: column;
+            }
+            .filter-btns {
+                width: 100%;
+                justify-content: center;
+            }
+            .btn-gold {
+                width: 100%;
+                justify-content: center;
+            }
+            .topic-stats {
+                font-size: 10px;
+                gap: 6px;
+            }
+            .bottom-nav {
+                bottom: 8px;
+                padding: 6px 4px;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrapper">
-  	  	  <header class="header">
-    <div class="logo">
-    	<div style="text-align:right;">        
-      <h1>گلدشت رولپلی</h1>
-</div>
+
+    <!-- ========================================== -->
+    <!-- LOGIN PAGE -->
+    <!-- ========================================== -->
+    <div class="login-container" id="loginPage">
+        <div class="logo"><i class="fas fa-crown"></i></div>
+        <h1>خوش آمدید</h1>
+        <p class="subtitle" id="formSubtitle">وارد حساب کاربری خود شوید</p>
+
+        <div class="tab-buttons">
+            <div class="tab-slider login" id="tabSlider"></div>
+            <button class="tab-btn active" id="loginTab" onclick="switchTab('login')">ورود</button>
+            <button class="tab-btn" id="registerTab" onclick="switchTab('register')">ثبت‌نام</button>
+        </div>
+
+        <form class="login-form" id="loginForm" onsubmit="return handleSubmit(event)">
+            <div class="form-group">
+                <label>نام کاربری</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="نام کاربری" id="username" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>رمز عبور</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="رمز عبور" id="password" required />
+                </div>
+            </div>
+            <div class="message" id="message"></div>
+            <button type="submit" class="btn-login" id="submitBtn">
+                <i class="fas fa-sign-in-alt" style="margin-left:8px;"></i>
+                <span id="btnText">ورود</span>
+            </button>
+        </form>
+        <div class="login-footer">© ۲۰۲۶ — انجمن رگنار</div>
     </div>
-    <nav class="nav" id="nav-menu">
-      <a href="index.html"><i class="fas fa-home"></i> صفحه اصلی</a>
-      <a href="shop.html"><i class="fas fa-wallet"></i> فروشگاه</a>
-      <a href="#vip">درباره ما</a>
-      <a href="#contact">درباره ما</a>
-    </nav>
-    <div style="text-align:left;">     
-    <div class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </div>
+
+    <!-- ========================================== -->
+    <!-- FORUM WRAPPER -->
+    <!-- ========================================== -->
+    <div class="forum-wrapper" id="forumPage">
+
+        <!-- Header -->
+        <div class="forum-header">
+            <div class="forum-brand">
+                <i class="fas fa-crown"></i>
+                <span>انجمن رگنار</span>
+            </div>
+            <div class="forum-header-actions">
+                <span class="online-count"><i class="fas fa-circle"></i> <span id="onlineCount">۰</span> آنلاین</span>
+                <button class="btn-gold small" onclick="showToast('🔔 اعلان‌ها')"><i class="fas fa-bell"></i></button>
+                <button class="btn-gold small" onclick="logout()" style="background:rgba(255,0,0,0.06);color:#ff6b6b;border:1px solid rgba(255,0,0,0.04);"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
         </div>
-  </header>
-  <main class="goz-container">
-    <div class="goz-header">
-      <h2>فروشگاه گلدشت</h2>
-      
-      <p>با خرید از فروشگاه، تجربه‌ای جذاب‌تر از نقش‌آفرینی داشته باشید.</p>
-    </div>
-    
 
-      
-    <div id="all-products" class="products-grid">
-    	
-      <div class="product-card">
-        <div class="product-icon"><i class="fas fa-wallet"></i></div>
-        <h3 class="product-title">1,000,000$ پول بازی</h3>
-            <div class="shop-header">
-  <p>قیمت 10,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-            <div class="product-card">
-        <div class="product-icon"><i class="fas fa-wallet"></i></div>
-        <h3 class="product-title">2,000,000$ پول بازی</h3>
-            <div class="shop-header">
-  <p>قیمت 20,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-                  <div class="product-card">
-        <div class="product-icon"><i class="fas fa-wallet"></i></div>
-        <h3 class="product-title">3,000,000$ پول بازی</h3>
-            <div class="shop-header">
-  <p>قیمت 30,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-                        <div class="product-card">
-        <div class="product-icon"><i class="fas fa-wallet"></i></div>
-        <h3 class="product-title">4,000,000$ پول بازی</h3>
-            <div class="shop-header">
-  <p>قیمت 40,000 تومان</p>
- </div>
- <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-                        <div class="product-card">
-        <div class="product-icon"><i class="fas fa-wallet"></i></div>
-        <h3 class="product-title">5,000,000$ پول بازی</h3>
-            <div class="shop-header">
-            
-  <p>قیمت 50,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-                        <div class="product-card">
-        <div class="product-icon"><i class="fas fa-wallet"></i></div>
-        <h3 class="product-title">6,000,000$ پول بازی</h3>
-            <div class="shop-header">
-  <p>قیمت 60,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-                              <div class="product-card">
-                              <div style="text-align:center;">
-   <img
-src="./assets/CJ.png"
-alt="CJ"
-width = 150>
-</div>
-        <h3 class="product-title">اسکین 0</h3>
-            <div class="shop-header">
-  <p>قیمت 600,000 تومان</p>
- </div>
- <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-      
-                                    <div class="product-card">
-                              <div style="text-align:center;">
-   <img
-src="./assets/104.png"
-alt="Ballas"
-width = 150>
-</div>
-        <h3 class="product-title">اسکین 104</h3>
-            <div class="shop-header">
-  <p>قیمت 300,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-      
-                                          <div class="product-card">
-                              <div style="text-align:center;">
-   <img
-src="./assets/110.png"
-alt="Vagos"
-width = 150>
-</div>
-        <h3 class="product-title">اسکین 110</h3>
-            <div class="shop-header">
-  <p>قیمت 220,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-
-                                    <div class="product-card">
-                              <div style="text-align:center;">
-   <img
-src="./assets/114.png"
-alt="Aztecas"
-width = 150>
-</div>
-        <h3 class="product-title">اسکین 114</h3>
-            <div class="shop-header">
-  <p>قیمت 150,000 تومان</p>
- </div>
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-      </div>
-      
-      
-                                          <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- User Panel -->
+        <div class="user-panel">
+            <div class="user-avatar" id="profileAvatar" onclick="navigateTo('profile')">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="user-info">
+                <div class="username">
+                    <span id="forumUsername">کاربر</span>
+                    <span class="verified hidden" id="verifiedBadge"><i class="fas fa-check-circle"></i></span>
+                </div>
+                <div class="user-badges">
+                    <span class="badge-rank gold" id="rankBadge"><i class="fas fa-crown"></i> عضو طلایی</span>
+                    <span class="badge-status"><i class="fas fa-circle"></i> آنلاین</span>
+                </div>
+            </div>
+            <div class="user-stats-mini">
+                <div><span class="num" id="userPostCount">۰</span><span class="lbl">پست</span></div>
+                <div><span class="num" id="userTopicCount">۰</span><span class="lbl">تاپیک</span></div>
+                <div><span class="num" id="userLikeCount">۰</span><span class="lbl">لایک</span></div>
+            </div>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/266.png"
-alt="PD"
-width = 150>
 
-        <h3 class="product-title">اسکین 266</h3>
-            <div class="shop-header">
-  <p>قیمت 400,000 تومان</p>
-  </div>
- </div>
- 
- <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-      
-                                                <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- Toolbar -->
+        <div class="forum-toolbar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="جستجوی تاپیک..." id="searchInput" onkeyup="filterTopics()" />
+            </div>
+            <div class="filter-btns">
+                <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">همه</button>
+                <button class="filter-btn" data-filter="new" onclick="setFilter('new')">جدید</button>
+                <button class="filter-btn" data-filter="hot" onclick="setFilter('hot')"><i class="fas fa-fire"></i> داغ</button>
+                <button class="filter-btn" data-filter="closed" onclick="setFilter('closed')"><i class="fas fa-lock"></i> بسته</button>
+            </div>
+            <button class="btn-gold" id="newTopicBtn" onclick="openNewTopic()">
+                <i class="fas fa-plus"></i> تاپیک جدید
+            </button>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/285.png"
-alt="SWAT"
-width = 150>
 
-        <h3 class="product-title">اسکین 285</h3>
-            <div class="shop-header">
-  <p>قیمت 400,000 تومان</p>
-  </div>
- </div>
- 
- <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-
-                                          <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card"><i class="fas fa-users"></i><span class="value" id="totalUsers">۰</span><span class="label">کاربران</span></div>
+            <div class="stat-card"><i class="fas fa-file-alt"></i><span class="value" id="totalTopics">۰</span><span class="label">تاپیک‌ها</span></div>
+            <div class="stat-card"><i class="fas fa-comments"></i><span class="value" id="totalPosts">۰</span><span class="label">پست‌ها</span></div>
+            <div class="stat-card"><i class="fas fa-clock"></i><span class="value" id="todayPosts">۰</span><span class="label">پست امروز</span></div>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/289.png"
-alt="Zero"
-width = 150>
 
-        <h3 class="product-title">اسکین 289</h3>
-            <div class="shop-header">
-  <p>قیمت 350,000 تومان</p>
-  </div>
- </div>
- 
- <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-      
-                                                <div class="product-card">
-
-                              <div style="text-align:center;">
-   <img
-src="./assets/123.png"
-alt="Da Nang Boy"
-width = 150>
-
-        <h3 class="product-title">اسکین 123</h3>
-            <div class="shop-header">
-  <p>قیمت 300,000 تومان</p>
-  </div>
- </div>
- 
-<a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-      
-
-                                          <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- Announce -->
+        <div class="announce">
+            <i class="fas fa-bullhorn"></i>
+            <div class="text">به انجمن رسمی <strong>رگنار</strong> خوش آمدید! قوانین را مطالعه کنید.</div>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/167.png"
-alt="Chickenbell"
-width = 150>
 
-        <h3 class="product-title">اسکین 167</h3>
-            <div class="shop-header">
-  <p>قیمت 400,000 تومان</p>
-  </div>
- </div>
- 
-   <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-      
-      
-                                                <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- ===== PAGES ===== -->
+        <!-- HOME PAGE -->
+        <div class="page active" id="page-home">
+            <div id="categoriesContainer"></div>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/406.png"
-alt="Dumper"
-width = 150>
 
-        <h3 class="product-title">ماشین 406</h3>
-            <div class="shop-header">
-  <p>قیمت 400,000 تومان</p>
-  </div>
- </div>
-        
-        <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-      
-                                                      <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- MEMBERS PAGE -->
+        <div class="page" id="page-members">
+            <div id="membersList"></div>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/502.png"
-alt="Hotring"
-width = 150>
 
-        <h3 class="product-title">ماشین 502</h3>
-            <div class="shop-header">
-  <p>قیمت 300,000 تومان</p>
-  </div>
- </div>
-        
-        <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
-      
-                                                            <div class="product-card">
-                                          	                      <div style="text-align:right;">                    	      <div class="footer-row">
-        <div class="hints">
-          <span class="hint-pill">تک سرور</span>
-</div>
+        <!-- PROFILE PAGE -->
+        <div class="page" id="page-profile">
+            <div class="profile-avatar" id="profileAvatarLarge" onclick="document.getElementById('avatarInput').click()">
+                <i class="fas fa-user"></i>
+            </div>
+            <input type="file" id="avatarInput" accept="image/*" style="display:none" onchange="uploadAvatar(event)" />
+            <div class="profile-name">
+                <span id="profileDisplayName">کاربر</span>
+                <span class="verified hidden" id="profileVerified"><i class="fas fa-check-circle"></i></span>
+            </div>
+            <div class="profile-bio" id="profileBio">هیچ بیوگرافی وارد نشده</div>
+            <div class="profile-stats">
+                <div><span class="num" id="profilePostCount">۰</span><span>پست</span></div>
+                <div><span class="num" id="profileTopicCount">۰</span><span>تاپیک</span></div>
+                <div><span class="num" id="profileLikeCount">۰</span><span>لایک</span></div>
+            </div>
+            <button class="btn-gold profile-edit-btn" onclick="openEditProfile()"><i class="fas fa-edit"></i> ویرایش پروفایل</button>
+            <button class="btn-ghost profile-edit-btn" style="margin-top:8px;" onclick="openAdminPanel()"><i class="fas fa-cog"></i> پنل ادمین</button>
         </div>
-                              <div style="text-align:center;">
-   <img
-src="./assets/556.png"
-alt="Monster-A"
-width = 150>
 
-        <h3 class="product-title">ماشین 556</h3>
-            <div class="shop-header">
-  <p>قیمت 350,000 تومان</p>
-  </div>
- </div>
-        
-        <a href="https://rubika.ir/Foroshande" target="_blank" class="btn-primary"><i class="fab fa-rubika"></i>خرید</a>
-        
-      </div>
-      </div>
+        <!-- RULES PAGE -->
+        <div class="page" id="page-rules">
+            <div id="rulesContainer"></div>
+        </div>
 
+        <!-- SHOP PAGE -->
+        <div class="page" id="page-shop">
+            <div class="shop-placeholder">
+                <i class="fas fa-store"></i>
+                <p>فروشگاه به زودی راه‌اندازی می‌شود!</p>
+            </div>
+        </div>
 
-  <footer class="footer">
-    <p>طراحی شده توسط @Pve_Mamad</p>
-    <p>© 2026 تمام حقوق ها محفوظ است | سمپ رگنار</p>
-  </footer>
+        <!-- PV PAGE -->
+        <div class="page" id="page-pv">
+            <div id="pvContainer">
+                <div style="margin-bottom:12px;font-size:14px;color:rgba(255,255,255,0.3);"><i class="fas fa-envelope"></i> پیام‌های خصوصی</div>
+                <div id="pvUserList" style="margin-bottom:12px;"></div>
+                <div id="pvChatBox" style="display:none;">
+                    <div id="pvMessages" style="max-height:300px;overflow-y:auto;margin-bottom:8px;"></div>
+                    <div class="chat-box">
+                        <input type="text" id="pvMessageInput" placeholder="پیام خود را بنویسید..." />
+                        <button class="btn-gold small" onclick="sendPrivateMessage()"><i class="fas fa-paper-plane"></i> ارسال</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Online Users -->
+        <div class="online-section">
+            <div class="online-header">
+                <span><i class="fas fa-circle" style="color:#55efc4;font-size:8px;"></i> <span id="onlineCountLabel">۰</span> کاربر آنلاین</span>
+                <span id="onlineTotalLabel">۰ کاربر در ۲۴ ساعت</span>
+            </div>
+            <div class="online-list" id="onlineUsersList"></div>
+        </div>
 
     </div>
-  </div>
-  
-  
-<script>
-const menuToggle = document.getElementById('menu-toggle');
-const kharid = document.getElementById('kharid-btn');
-const navMenu = document.getElementById('nav-menu');
 
+    <!-- ===== BOTTOM NAV ===== -->
+    <div class="bottom-nav" id="bottomNav">
+        <a href="#" class="active" data-page="home" onclick="navigateTo('home')"><i class="fas fa-home"></i> خانه</a>
+        <a href="#" data-page="members" onclick="navigateTo('members')"><i class="fas fa-users"></i> اعضا</a>
+        <a href="#" data-page="profile" onclick="navigateTo('profile')"><i class="fas fa-user"></i> پروفایل</a>
+        <a href="#" data-page="pv" onclick="navigateTo('pv')"><i class="fas fa-envelope"></i> پیام‌ها <span class="badge" id="pvBadge" style="display:none;">۰</span></a>
+        <a href="#" data-page="rules" onclick="navigateTo('rules')"><i class="fas fa-gavel"></i> قوانین</a>
+        <a href="#" data-page="shop" onclick="navigateTo('shop')"><i class="fas fa-store"></i> فروشگاه</a>
+    </div>
 
+    <!-- ========================================== -->
+    <!-- MODALS -->
+    <!-- ========================================== -->
 
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-</script>
+    <!-- New Topic Modal -->
+    <div class="modal-overlay" id="newTopicModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> تاپیک جدید</h3>
+                <button class="modal-close" onclick="closeModal('newTopicModal')">&times;</button>
+            </div>
+            <form onsubmit="createTopic(event)">
+                <div class="form-group">
+                    <label>عنوان</label>
+                    <input type="text" id="topicTitle" placeholder="عنوان تاپیک..." required />
+                </div>
+                <div class="form-group">
+                    <label>دسته</label>
+                    <select id="topicCategory">
+                        <option value="general"><i class="fas fa-comment"></i> عمومی</option>
+                        <option value="news"><i class="fas fa-newspaper"></i> اخبار</option>
+                        <option value="support"><i class="fas fa-headset"></i> پشتیبانی</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>متن</label>
+                    <textarea id="topicContent" placeholder="متن تاپیک..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" id="topicIsQuestion" style="width:auto;display:inline;margin-left:6px;" /> <i class="fas fa-question-circle"></i> این تاپیک سوال است</label>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-gold">ایجاد</button>
+                    <button type="button" class="btn-ghost" onclick="closeModal('newTopicModal')">انصراف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Topic Modal -->
+    <div class="modal-overlay" id="viewTopicModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 id="viewTopicTitle"><i class="fas fa-file-alt"></i> عنوان</h3>
+                <div>
+                    <button class="btn-gold small danger" id="deleteTopicBtn" style="display:none;margin-left:8px;" onclick="deleteTopic()"><i class="fas fa-trash"></i> حذف</button>
+                    <button class="modal-close" onclick="closeModal('viewTopicModal')">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body" id="viewTopicBody"></div>
+            <div class="modal-footer">
+                <textarea id="replyContent" placeholder="پاسخ خود را بنویسید..." rows="3"></textarea>
+                <button class="btn-gold" onclick="submitReply()"><i class="fas fa-paper-plane"></i> ارسال پاسخ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> ویرایش پروفایل</h3>
+                <button class="modal-close" onclick="closeModal('editProfileModal')">&times;</button>
+            </div>
+            <form onsubmit="saveProfile(event)">
+                <div class="form-group">
+                    <label>نام کاربری جدید</label>
+                    <input type="text" id="editUsername" placeholder="نام کاربری" required />
+                </div>
+                <div class="form-group">
+                    <label>بیوگرافی</label>
+                    <textarea id="editBio" placeholder="درباره خودت..." rows="3"></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-gold">ذخیره</button>
+                    <button type="button" class="btn-ghost" onclick="closeModal('editProfileModal')">انصراف</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal-overlay" id="adminPanelModal">
+        <div class="modal modal-large admin-panel">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> پنل ادمین</h3>
+                <button class="modal-close" onclick="closeModal('adminPanelModal')">&times;</button>
+            </div>
+            <div id="adminPanelContent">
+                <div class="form-group" style="display:flex;gap:8px;align-items:center;">
+                    <input type="password" id="adminPass" placeholder="رمز ادمین" style="flex:1;" />
+                    <button class="btn-gold small" onclick="verifyAdmin()">ورود</button>
+                </div>
+                <div id="adminPanelInner" style="display:none;margin-top:12px;">
+                    <div id="adminUserList"></div>
+                    <button class="btn-gold small" onclick="refreshAdminPanel()" style="margin-top:8px;"><i class="fas fa-sync"></i> بروزرسانی</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================== -->
+    <script>
+        // ============================================================
+        //  INDEXEDDB WRAPPER
+        // ============================================================
+        const DB_NAME = 'RegnarForum_v5';
+        const DB_VERSION = 6;
+
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const req = indexedDB.open(DB_NAME, DB_VERSION);
+                req.onupgradeneeded = e => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains('users')) {
+                        const store = db.createObjectStore('users', { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('username', 'username', { unique: true });
+                    }
+                    if (!db.objectStoreNames.contains('topics')) {
+                        const store = db.createObjectStore('topics', { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('category', 'category');
+                        store.createIndex('createdAt', 'createdAt');
+                    }
+                    if (!db.objectStoreNames.contains('posts')) {
+                        const store = db.createObjectStore('posts', { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('topicId', 'topicId');
+                        store.createIndex('createdAt', 'createdAt');
+                    }
+                    if (!db.objectStoreNames.contains('likes')) {
+                        db.createObjectStore('likes', { keyPath: ['postId', 'userId'] });
+                    }
+                    if (!db.objectStoreNames.contains('topic_views')) {
+                        db.createObjectStore('topic_views', { keyPath: ['topicId', 'userId'] });
+                    }
+                    if (!db.objectStoreNames.contains('messages')) {
+                        const store = db.createObjectStore('messages', { keyPath: 'id', autoIncrement: true });
+                        store.createIndex('senderId', 'senderId');
+                        store.createIndex('receiverId', 'receiverId');
+                        store.createIndex('timestamp', 'timestamp');
+                    }
+                };
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        // ============================================================
+        //  HELPERS
+        // ============================================================
+        async function getStore(storeName, mode = 'readonly') {
+            const db = await openDB();
+            return db.transaction(storeName, mode).objectStore(storeName);
+        }
+
+        function getAll(storeName) {
+            return new Promise(async (resolve, reject) => {
+                const store = await getStore(storeName);
+                const req = store.getAll();
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function getByIndex(storeName, indexName, value) {
+            return new Promise(async (resolve, reject) => {
+                const store = await getStore(storeName);
+                const req = store.index(indexName).getAll(value);
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function putData(storeName, data) {
+            return new Promise(async (resolve, reject) => {
+                const store = await getStore(storeName, 'readwrite');
+                const req = store.put(data);
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function deleteData(storeName, id) {
+            return new Promise(async (resolve, reject) => {
+                const store = await getStore(storeName, 'readwrite');
+                const req = store.delete(id);
+                req.onsuccess = () => resolve();
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function deleteByKey(storeName, key) {
+            return new Promise(async (resolve, reject) => {
+                const store = await getStore(storeName, 'readwrite');
+                const req = store.delete(key);
+                req.onsuccess = () => resolve();
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function getByKey(storeName, key) {
+            return new Promise(async (resolve, reject) => {
+                const store = await getStore(storeName);
+                const req = store.get(key);
+                req.onsuccess = () => resolve(req.result);
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        // ============================================================
+        //  AUTH
+        // ============================================================
+        let currentUser = null;
+        let currentMode = 'login';
+        const ADMIN_PASSWORD = '121226';
+
+        async function userExists(username) {
+            const users = await getAll('users');
+            return users.some(u => u.username.toLowerCase() === username.toLowerCase());
+        }
+
+        async function registerUser(username, password) {
+            if (await userExists(username)) return { success: false, message: '❌ این نام کاربری قبلاً ثبت شده!' };
+            await putData('users', { username, password, isAdmin: false, profilePic: null, profilePicBlob: null, bio: '',
+                createdAt: Date.now(), online: false });
+            return { success: true, message: '✅ ثبت‌نام موفق!' };
+        }
+
+        async function loginUser(username, password) {
+            const users = await getAll('users');
+            const user = users.find(u => u.username.toLowerCase() === username.toLowerCase());
+            if (!user) return { success: false, message: '❌ کاربر یافت نشد!' };
+            if (user.password !== password) return { success: false, message: '❌ رمز عبور اشتباه!' };
+            user.online = true;
+            await putData('users', user);
+            return { success: true, message: `✅ خوش آمدید ${user.username}!`, user };
+        }
+
+        function switchTab(mode) {
+            currentMode = mode;
+            const slider = document.getElementById('tabSlider');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const btnText = document.getElementById('btnText');
+            const subtitle = document.getElementById('formSubtitle');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (mode === 'login') {
+                slider.className = 'tab-slider login';
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+                btnText.textContent = 'ورود';
+                submitBtn.innerHTML =
+                    '<i class="fas fa-sign-in-alt" style="margin-left:8px;"></i><span id="btnText">ورود</span>';
+                subtitle.textContent = 'وارد حساب کاربری خود شوید';
+            } else {
+                slider.className = 'tab-slider register';
+                registerTab.classList.add('active');
+                loginTab.classList.remove('active');
+                btnText.textContent = 'ثبت‌نام';
+                submitBtn.innerHTML =
+                    '<i class="fas fa-user-plus" style="margin-left:8px;"></i><span id="btnText">ثبت‌نام</span>';
+                subtitle.textContent = 'ایجاد حساب کاربری جدید';
+            }
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const msg = document.getElementById('message');
+
+            if (!username || !password) { showMessage('⚠️ لطفاً همه فیلدها را پر کنید!', 'error'); return false; }
+            if (username.length < 3) { showMessage('⚠️ نام کاربری حداقل ۳ کاراکتر!', 'error'); return false; }
+            if (password.length < 4) { showMessage('⚠️ رمز عبور حداقل ۴ کاراکتر!', 'error'); return false; }
+
+            let result;
+            if (currentMode === 'login') {
+                result = await loginUser(username, password);
+            } else {
+                result = await registerUser(username, password);
+            }
+
+            if (result.success) {
+                showMessage(result.message, 'success');
+                if (currentMode === 'login') {
+                    currentUser = result.user;
+                    sessionStorage.setItem('forumUser', JSON.stringify(currentUser));
+                    showForum();
+                } else {
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    setTimeout(() => switchTab('login'), 800);
+                }
+            } else {
+                showMessage(result.message, 'error');
+            }
+            return false;
+        }
+
+        function showMessage(text, type) {
+            const el = document.getElementById('message');
+            el.textContent = text;
+            el.className = `message ${type}`;
+            el.style.display = 'block';
+            clearTimeout(window._msgTimeout);
+            window._msgTimeout = setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        // ============================================================
+        //  FORUM CORE
+        // ============================================================
+        async function showForum() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('forumPage').classList.add('active');
+            document.getElementById('bottomNav').classList.add('show');
+
+            const user = currentUser || JSON.parse(sessionStorage.getItem('forumUser'));
+            if (!user) return logout();
+
+            currentUser = user;
+            user.online = true;
+            await putData('users', user);
+
+            document.getElementById('forumUsername').textContent = user.username;
+            document.getElementById('profileDisplayName').textContent = user.username;
+            if (user.isAdmin) {
+                document.getElementById('verifiedBadge').classList.remove('hidden');
+                document.getElementById('profileVerified').classList.remove('hidden');
+                document.getElementById('rankBadge').innerHTML = '<i class="fas fa-crown"></i> ادمین';
+                document.getElementById('newTopicBtn').style.display = 'inline-flex';
+            } else {
+                document.getElementById('verifiedBadge').classList.add('hidden');
+                document.getElementById('profileVerified').classList.add('hidden');
+                document.getElementById('rankBadge').innerHTML = '<i class="fas fa-user"></i> عضو عادی';
+                document.getElementById('newTopicBtn').style.display = 'inline-flex';
+            }
+
+            if (user.profilePicBlob) {
+                if (!user._avatarUrl) {
+                    user._avatarUrl = URL.createObjectURL(user.profilePicBlob);
+                }
+                document.getElementById('profileAvatar').innerHTML = `<img src="${user._avatarUrl}" />`;
+                document.getElementById('profileAvatarLarge').innerHTML = `<img src="${user._avatarUrl}" />`;
+            } else {
+                document.getElementById('profileAvatar').innerHTML = `<i class="fas fa-user"></i>`;
+                document.getElementById('profileAvatarLarge').innerHTML = `<i class="fas fa-user"></i>`;
+            }
+
+            document.getElementById('profileBio').textContent = user.bio || 'هیچ بیوگرافی وارد نشده';
+            document.getElementById('editUsername').value = user.username;
+            document.getElementById('editBio').value = user.bio || '';
+
+            await refreshStats();
+            await loadCategories();
+            await loadMembers();
+            await loadOnlineUsers();
+            await loadRules();
+            await loadUserStats();
+            await loadPVBadge();
+            navigateTo('home');
+            showToast(`👋 خوش آمدید ${user.username}!`);
+        }
+
+        function logout() {
+            if (currentUser) {
+                currentUser.online = false;
+                putData('users', currentUser);
+            }
+            sessionStorage.removeItem('forumUser');
+            currentUser = null;
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('forumPage').classList.remove('active');
+            document.getElementById('bottomNav').classList.remove('show');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+            showToast('👋 شما خارج شدید!');
+        }
+
+        // ============================================================
+        //  STATS
+        // ============================================================
+        async function refreshStats() {
+            const users = await getAll('users');
+            const topics = await getAll('topics');
+            const posts = await getAll('posts');
+
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalTopics').textContent = topics.length;
+            document.getElementById('totalPosts').textContent = posts.length;
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const todayPosts = posts.filter(p => new Date(p.createdAt) >= today);
+            document.getElementById('todayPosts').textContent = todayPosts.length;
+
+            const onlineUsers = users.filter(u => u.online);
+            document.getElementById('onlineCount').textContent = onlineUsers.length;
+            document.getElementById('onlineCountLabel').textContent = onlineUsers.length;
+            document.getElementById('onlineTotalLabel').textContent = `${users.length} کاربر در ۲۴ ساعت`;
+        }
+
+        async function loadUserStats() {
+            if (!currentUser) return;
+            const posts = await getAll('posts');
+            const userPosts = posts.filter(p => p.authorId === currentUser.id);
+            const topics = await getAll('topics');
+            const userTopics = topics.filter(t => t.authorId === currentUser.id);
+            const likes = await getAll('likes');
+            const userLikes = likes.filter(l => l.userId === currentUser.id);
+
+            document.getElementById('userPostCount').textContent = userPosts.length;
+            document.getElementById('userTopicCount').textContent = userTopics.length;
+            document.getElementById('userLikeCount').textContent = userLikes.length;
+            document.getElementById('profilePostCount').textContent = userPosts.length;
+            document.getElementById('profileTopicCount').textContent = userTopics.length;
+            document.getElementById('profileLikeCount').textContent = userLikes.length;
+        }
+
+        // ============================================================
+        //  TOPIC VIEWS
+        // ============================================================
+        async function hasViewedTopic(topicId, userId) {
+            const views = await getAll('topic_views');
+            return views.some(v => v.topicId === topicId && v.userId === userId);
+        }
+
+        async function markTopicViewed(topicId, userId) {
+            if (!await hasViewedTopic(topicId, userId)) {
+                await putData('topic_views', { topicId, userId });
+                return true;
+            }
+            return false;
+        }
+
+        // ============================================================
+        //  CATEGORIES & TOPICS (رفع باگ شمارش)
+        // ============================================================
+        async function loadCategories() {
+            const topics = await getAll('topics');
+            const container = document.getElementById('categoriesContainer');
+            // دسته‌بندی‌های اصلی + "سایر" برای تاپیک‌های با دسته‌بندی نامشخص
+            const categories = ['general', 'news', 'support', 'other'];
+            const labels = {
+                general: '<i class="fas fa-comment"></i> عمومی',
+                news: '<i class="fas fa-newspaper"></i> اخبار',
+                support: '<i class="fas fa-headset"></i> پشتیبانی',
+                other: '<i class="fas fa-folder"></i> سایر'
+            };
+
+            let html = '';
+            let totalDisplayed = 0;
+            for (const cat of categories) {
+                let catTopics;
+                if (cat === 'other') {
+                    catTopics = topics.filter(t => !['general', 'news', 'support'].includes(t.category));
+                } else {
+                    catTopics = topics.filter(t => t.category === cat);
+                }
+                totalDisplayed += catTopics.length;
+
+                html += `<div class="category">
+                    <div class="category-header">
+                        <div class="info">
+                            <i class="fas fa-folder"></i>
+                            <span class="name">${labels[cat]}</span>
+                            <span class="count">${catTopics.length} تاپیک</span>
+                        </div>
+                        <button class="btn-gold small" onclick="openNewTopic()"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="topic-list">`;
+                if (catTopics.length === 0) {
+                    html += `<div style="padding:8px 12px;color:rgba(255,255,255,0.15);font-size:13px;">هیچ تاپیکی در این دسته وجود ندارد</div>`;
+                } else {
+                    catTopics.sort((a, b) => b.createdAt - a.createdAt);
+                    for (const t of catTopics) {
+                        const posts = await getByIndex('posts', 'topicId', t.id);
+                        const replies = posts.length;
+                        const likes = await getAll('likes');
+                        const likeCount = likes.filter(l => l.postId && posts.some(p => p.id === l.postId)).length;
+                        const isHot = (replies + likeCount) > 5;
+                        const isClosed = t.isClosed || false;
+                        const isQuestion = t.isQuestion || false;
+                        const badge = isClosed ? '<span class="topic-badge closed"><i class="fas fa-lock"></i> بسته</span>' :
+                            isHot ? '<span class="topic-badge hot"><i class="fas fa-fire"></i> داغ</span>' :
+                            isQuestion ? '<span class="topic-badge question"><i class="fas fa-question-circle"></i> سوال</span>' :
+                            '';
+                        html += `<div class="topic-item" onclick="viewTopic(${t.id})">
+                            <div class="topic-main">
+                                <div class="topic-status"><i class="fas fa-${isClosed ? 'lock' : 'file-alt'}"></i></div>
+                                <div>
+                                    <div class="topic-title">${t.title}</div>
+                                    <div class="topic-meta">
+                                        <span><i class="fas fa-user"></i> ${t.authorName}</span>
+                                        <span><i class="fas fa-clock"></i> ${new Date(t.createdAt).toLocaleDateString('fa-IR')}</span>
+                                        <span><i class="fas fa-eye"></i> ${t.views || 0}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="topic-stats">
+                                <span><i class="fas fa-reply"></i> ${replies}</span>
+                                <span><i class="fas fa-heart"></i> ${likeCount}</span>
+                                ${badge}
+                            </div>
+                        </div>`;
+                    }
+                }
+                html += `</div></div>`;
+            }
+            container.innerHTML = html;
+            // اگر هیچ تاپیکی وجود نداشته باشد
+            if (topics.length === 0) {
+                container.innerHTML += `<div style="text-align:center;padding:30px 0;color:rgba(255,255,255,0.1);">
+                    <i class="fas fa-comment-slash" style="font-size:32px;display:block;margin-bottom:8px;"></i>
+                    هنوز تاپیکی ساخته نشده است!
+                </div>`;
+            }
+            // بررسی تطابق تعداد (اختیاری)
+            if (totalDisplayed !== topics.length) {
+                console.warn('تعداد تاپیک‌های نمایش داده شده با کل تاپیک‌ها برابر نیست!', totalDisplayed, topics.length);
+            }
+        }
+
+        // ============================================================
+        //  CREATE TOPIC
+        // ============================================================
+        async function createTopic(e) {
+            e.preventDefault();
+            if (!currentUser) return showToast('❌ لطفاً وارد شوید!');
+
+            const title = document.getElementById('topicTitle').value.trim();
+            const content = document.getElementById('topicContent').value.trim();
+            const category = document.getElementById('topicCategory').value;
+            const isQuestion = document.getElementById('topicIsQuestion').checked;
+
+            if (!title || !content) return showToast('⚠️ عنوان و متن را پر کنید!');
+
+            if (!currentUser.isAdmin) {
+                return showToast('⚠️ فقط ادمین‌ها می‌توانند تاپیک جدید بسازند!');
+            }
+
+            const topic = {
+                title,
+                category,
+                content,
+                authorId: currentUser.id,
+                authorName: currentUser.username,
+                createdAt: Date.now(),
+                isClosed: false,
+                isQuestion,
+                views: 0,
+            };
+            await putData('topics', topic);
+            showToast(`✅ تاپیک "${title}" ایجاد شد!`);
+            closeModal('newTopicModal');
+            document.getElementById('topicTitle').value = '';
+            document.getElementById('topicContent').value = '';
+            document.getElementById('topicIsQuestion').checked = false;
+            await refreshStats();
+            await loadCategories();
+        }
+
+        // ============================================================
+        //  VIEW TOPIC
+        // ============================================================
+        let currentTopicId = null;
+
+        async function viewTopic(topicId) {
+            const topic = await getByKey('topics', topicId);
+            if (!topic) return showToast('❌ تاپیک یافت نشد!');
+
+            currentTopicId = topicId;
+
+            if (currentUser) {
+                const viewed = await hasViewedTopic(topicId, currentUser.id);
+                if (!viewed) {
+                    topic.views = (topic.views || 0) + 1;
+                    await putData('topics', topic);
+                    await markTopicViewed(topicId, currentUser.id);
+                }
+            }
+
+            const posts = await getByIndex('posts', 'topicId', topicId);
+            posts.sort((a, b) => a.createdAt - b.createdAt);
+
+            const likes = await getAll('likes');
+
+            document.getElementById('viewTopicTitle').innerHTML = `<i class="fas fa-file-alt"></i> ${topic.title}`;
+
+            const deleteBtn = document.getElementById('deleteTopicBtn');
+            if (currentUser && currentUser.isAdmin) {
+                deleteBtn.style.display = 'inline-block';
+            } else {
+                deleteBtn.style.display = 'none';
+            }
+
+            let html = `
+                <div class="topic-view-header">
+                    <span><i class="fas fa-user"></i> ${topic.authorName}</span>
+                    <span><i class="fas fa-clock"></i> ${new Date(topic.createdAt).toLocaleDateString('fa-IR')}</span>
+                    <span><i class="fas fa-eye"></i> ${topic.views}</span>
+                    ${topic.isClosed ? '<span class="topic-badge closed"><i class="fas fa-lock"></i> بسته</span>' : ''}
+                </div>
+                <div class="topic-view-content">${topic.content.replace(/\n/g, '<br>')}</div>
+                <hr style="border-color:rgba(255,255,255,0.03);margin:12px 0;" />
+                <div class="topic-view-replies">
+                    <h4 style="color:rgba(255,255,255,0.3);font-size:14px;margin-bottom:8px;"><i class="fas fa-reply"></i> پاسخ‌ها (${posts.length})</h4>
+            `;
+
+            for (const p of posts) {
+                const likeCount = likes.filter(l => l.postId === p.id).length;
+                const userLiked = likes.some(l => l.postId === p.id && l.userId === currentUser?.id);
+                const user = await getByKey('users', p.authorId);
+                const isAdmin = user?.isAdmin || false;
+                html += `
+                    <div class="post-item" id="post-${p.id}">
+                        <div class="post-header">
+                            <span class="author">
+                                <i class="fas fa-user"></i> ${p.authorName}
+                                ${isAdmin ? '<span class="verified"><i class="fas fa-check-circle"></i></span>' : ''}
+                            </span>
+                            <span>${new Date(p.createdAt).toLocaleString('fa-IR')}</span>
+                        </div>
+                        ${p.parentPostId ? `<div class="reply-quote"><span class="qauthor"><i class="fas fa-reply"></i> پاسخ به</span> ${p.parentAuthorName || 'کاربر'}</div>` : ''}
+                        <div class="post-content">${p.content.replace(/\n/g, '<br>')}</div>
+                        <div class="post-actions">
+                            <span onclick="likePost(${p.id})" class="${userLiked ? 'liked' : ''}">
+                                <i class="fa${userLiked ? 's' : 'r'} fa-heart"></i> <span id="likeCount-${p.id}">${likeCount}</span>
+                            </span>
+                            <span onclick="replyToPost(${p.id}, '${p.authorName}')"><i class="fas fa-reply"></i> پاسخ</span>
+                            ${currentUser?.id === p.authorId || currentUser?.isAdmin ? `<span onclick="deletePost(${p.id})" style="color:#ff6b6b;"><i class="fas fa-trash"></i></span>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            html += `</div>`;
+            document.getElementById('viewTopicBody').innerHTML = html;
+
+            const footer = document.querySelector('#viewTopicModal .modal-footer');
+            if (topic.isClosed && !currentUser?.isAdmin) {
+                footer.innerHTML = `<div style="padding:10px;text-align:center;color:rgba(255,255,255,0.2);"><i class="fas fa-lock"></i> این تاپیک بسته شده است.</div>`;
+            } else {
+                footer.innerHTML = `
+                    <textarea id="replyContent" placeholder="پاسخ خود را بنویسید..." rows="3"></textarea>
+                    <button class="btn-gold" onclick="submitReply()"><i class="fas fa-paper-plane"></i> ارسال پاسخ</button>
+                `;
+            }
+
+            document.getElementById('viewTopicModal').classList.add('active');
+            window._replyToPostId = null;
+            window._replyToAuthor = null;
+        }
+
+        // ============================================================
+        //  DELETE TOPIC
+        // ============================================================
+        async function deleteTopic() {
+            if (!currentUser || !currentUser.isAdmin) return showToast('❌ دسترسی ندارید!');
+            if (!currentTopicId) return;
+            if (!confirm('آیا مطمئن هستید که می‌خواهید این تاپیک و همه پاسخ‌های آن را حذف کنید؟')) return;
+
+            await deleteData('topics', currentTopicId);
+            const posts = await getByIndex('posts', 'topicId', currentTopicId);
+            for (const p of posts) {
+                await deleteData('posts', p.id);
+            }
+            const views = await getAll('topic_views');
+            for (const v of views) {
+                if (v.topicId === currentTopicId) {
+                    await deleteByKey('topic_views', { topicId: v.topicId, userId: v.userId });
+                }
+            }
+            showToast('🗑️ تاپیک و همه پاسخ‌ها حذف شدند!');
+            closeModal('viewTopicModal');
+            await refreshStats();
+            await loadCategories();
+        }
+
+        // ============================================================
+        //  POST / REPLY
+        // ============================================================
+        async function submitReply() {
+            if (!currentUser) return showToast('❌ لطفاً وارد شوید!');
+            const content = document.getElementById('replyContent').value.trim();
+            if (!content) return showToast('⚠️ متن پاسخ را وارد کنید!');
+
+            const topic = await getByKey('topics', currentTopicId);
+            if (!topic) return showToast('❌ تاپیک یافت نشد!');
+            if (topic.isClosed && !currentUser.isAdmin) return showToast('🔒 این تاپیک بسته است!');
+
+            const post = {
+                topicId: currentTopicId,
+                authorId: currentUser.id,
+                authorName: currentUser.username,
+                content,
+                createdAt: Date.now(),
+                parentPostId: window._replyToPostId || null,
+                parentAuthorName: window._replyToAuthor || null,
+            };
+            await putData('posts', post);
+            showToast('✅ پاسخ شما ارسال شد!');
+            document.getElementById('replyContent').value = '';
+            window._replyToPostId = null;
+            window._replyToAuthor = null;
+            await refreshStats();
+            await viewTopic(currentTopicId);
+            await loadUserStats();
+        }
+
+        function replyToPost(postId, author) {
+            window._replyToPostId = postId;
+            window._replyToAuthor = author;
+            document.getElementById('replyContent').focus();
+            document.getElementById('replyContent').placeholder = `پاسخ به ${author}...`;
+            showToast(`↩️ در حال پاسخ به ${author}`);
+        }
+
+        // ============================================================
+        //  LIKES
+        // ============================================================
+        async function likePost(postId) {
+            if (!currentUser) return showToast('❌ لطفاً وارد شوید!');
+            const likes = await getAll('likes');
+            const existing = likes.find(l => l.postId === postId && l.userId === currentUser.id);
+            if (existing) {
+                await deleteByKey('likes', { postId, userId: currentUser.id });
+                showToast('💔 لایک برداشته شد');
+            } else {
+                await putData('likes', { postId, userId: currentUser.id });
+                showToast('❤️ لایک شد!');
+            }
+            await viewTopic(currentTopicId);
+            await loadUserStats();
+            await refreshStats();
+        }
+
+        // ============================================================
+        //  DELETE POST
+        // ============================================================
+        async function deletePost(postId) {
+            if (!currentUser) return;
+            const post = await getByKey('posts', postId);
+            if (!post) return;
+            if (post.authorId !== currentUser.id && !currentUser.isAdmin) return showToast('❌ دسترسی ندارید!');
+            await deleteData('posts', postId);
+            showToast('🗑️ پست حذف شد');
+            await viewTopic(currentTopicId);
+            await refreshStats();
+            await loadUserStats();
+        }
+
+        // ============================================================
+        //  MEMBERS
+        // ============================================================
+        async function loadMembers() {
+            const users = await getAll('users');
+            const container = document.getElementById('membersList');
+            let html = `<div style="margin-bottom:12px;font-size:14px;color:rgba(255,255,255,0.3);"><i class="fas fa-users"></i> ${users.length} عضو</div>`;
+            for (const u of users) {
+                const online = u.online ? 'آنلاین' : 'آفلاین';
+                const statusClass = u.online ? 'online' : '';
+                const avatarSrc = u.profilePicBlob ? URL.createObjectURL(u.profilePicBlob) : null;
+                html += `
+                    <div class="member-item" onclick="openPrivateChat(${u.id})">
+                        <div class="member-info">
+                            <div class="member-avatar">${avatarSrc ? `<img src="${avatarSrc}" />` : '<i class="fas fa-user"></i>'}</div>
+                            <span class="member-name">${u.username} ${u.isAdmin ? '<span class="verified"><i class="fas fa-check-circle"></i></span>' : ''}</span>
+                            <span class="member-role">${u.isAdmin ? 'ادمین' : 'کاربر'}</span>
+                        </div>
+                        <div>
+                            <span class="member-status ${statusClass}"><i class="fas fa-circle"></i> ${online}</span>
+                            <span class="member-pm-btn" onclick="event.stopPropagation();openPrivateChat(${u.id})"><i class="fas fa-envelope"></i></span>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        //  ONLINE USERS
+        // ============================================================
+        async function loadOnlineUsers() {
+            const users = await getAll('users');
+            const online = users.filter(u => u.online);
+            const container = document.getElementById('onlineUsersList');
+            let html = '';
+            for (const u of online) {
+                html += `
+                    <div class="online-user">
+                        <i class="fas fa-circle"></i>
+                        <span>${u.username}</span>
+                        ${u.isAdmin ? '<span class="admin-tag">ادمین</span>' : ''}
+                        ${u.isAdmin ? '<span class="verified-tag"><i class="fas fa-check-circle"></i></span>' : ''}
+                    </div>
+                `;
+            }
+            if (online.length === 0) html = '<span style="color:rgba(255,255,255,0.1);font-size:13px;">هیچ کاربری آنلاین نیست</span>';
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        //  RULES
+        // ============================================================
+        async function loadRules() {
+            const container = document.getElementById('rulesContainer');
+            const rules = [
+                { title: '۱. احترام به همه', content: 'با همه کاربران با احترام رفتار کنید.' },
+                { title: '۲. زبان مناسب', content: 'از کلمات نامناسب و توهین‌آمیز خودداری کنید.' },
+                { title: '۳. محتوای مفید', content: 'محتوای اسپم و بی‌ارسال نکنید.' },
+                { title: '۴. قوانین انجمن', content: 'همه کاربران موظف به رعایت قوانین هستند.' },
+            ];
+            let html = '';
+            for (const r of rules) {
+                html += `<div class="rule-item"><div class="title"><i class="fas fa-gavel"></i> ${r.title}</div><div class="content">${r.content}</div></div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        // ============================================================
+        //  PRIVATE MESSAGES
+        // ============================================================
+        let selectedPVUser = null;
+
+        async function loadPVBadge() {
+            if (!currentUser) return;
+            const messages = await getAll('messages');
+            const unread = messages.filter(m => m.receiverId === currentUser.id && !m.read);
+            const badge = document.getElementById('pvBadge');
+            if (unread.length > 0) {
+                badge.style.display = 'inline';
+                badge.textContent = unread.length;
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function openPrivateChat(userId) {
+            if (!currentUser) return showToast('❌ لطفاً وارد شوید!');
+            if (userId === currentUser.id) return showToast('⚠️ نمی‌توانید با خودتان چت کنید!');
+            selectedPVUser = userId;
+            navigateTo('pv');
+            loadPVChat();
+        }
+
+        async function loadPVChat() {
+            if (!selectedPVUser) return;
+            const user = await getByKey('users', selectedPVUser);
+            if (!user) return showToast('❌ کاربر یافت نشد!');
+
+            document.getElementById('pvChatBox').style.display = 'block';
+            document.getElementById('pvUserList').innerHTML =
+                `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:12px;">
+                    <i class="fas fa-user" style="color:#ffd700;"></i>
+                    <span style="font-weight:600;color:#fff;">${user.username}</span>
+                    <span style="font-size:11px;color:${user.online ? '#55efc4' : 'rgba(255,255,255,0.2)'};"><i class="fas fa-circle"></i> ${user.online ? 'آنلاین' : 'آفلاین'}</span>
+                    <button class="btn-ghost small" onclick="selectedPVUser=null;document.getElementById('pvChatBox').style.display='none';document.getElementById('pvUserList').innerHTML='';" style="margin-right:auto;"><i class="fas fa-times"></i></button>
+                </div>`;
+
+            const allMessages = await getAll('messages');
+            const chatMessages = allMessages.filter(m =>
+                (m.senderId === currentUser.id && m.receiverId === selectedPVUser) ||
+                (m.senderId === selectedPVUser && m.receiverId === currentUser.id)
+            );
+            chatMessages.sort((a, b) => a.timestamp - b.timestamp);
+
+            for (const m of chatMessages) {
+                if (m.receiverId === currentUser.id && !m.read) {
+                    m.read = true;
+                    await putData('messages', m);
+                }
+            }
+            await loadPVBadge();
+
+            const container = document.getElementById('pvMessages');
+            if (chatMessages.length === 0) {
+                container.innerHTML =
+                    '<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.15);">هنوز پیامی ارسال نشده است.</div>';
+            } else {
+                let html = '';
+                for (const m of chatMessages) {
+                    const isMe = m.senderId === currentUser.id;
+                    html += `
+                        <div style="background:${isMe ? 'rgba(255,215,0,0.06)' : 'rgba(255,255,255,0.02)'};border-radius:12px;padding:6px 12px;margin-bottom:4px;border-right:2px solid ${isMe ? '#ffd700' : '#4a8af2'};">
+                            <div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.3);">
+                                <span>${isMe ? 'شما' : await getUsername(m.senderId)}</span>
+                                <span>${new Date(m.timestamp).toLocaleString('fa-IR')}</span>
+                            </div>
+                            <div style="font-size:14px;color:rgba(255,255,255,0.7);">${m.content}</div>
+                        </div>
+                    `;
+                }
+                container.innerHTML = html;
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+
+        async function getUsername(userId) {
+            const user = await getByKey('users', userId);
+            return user ? user.username : 'کاربر ناشناس';
+        }
+
+        async function sendPrivateMessage() {
+            if (!currentUser || !selectedPVUser) return showToast('❌ کاربر مقصد مشخص نیست!');
+            const input = document.getElementById('pvMessageInput');
+            const content = input.value.trim();
+            if (!content) return showToast('⚠️ متن پیام را وارد کنید!');
+
+            await putData('messages', {
+                senderId: currentUser.id,
+                receiverId: selectedPVUser,
+                content,
+                timestamp: Date.now(),
+                read: false
+            });
+
+            input.value = '';
+            await loadPVChat();
+            await loadPVBadge();
+            showToast('✅ پیام ارسال شد!');
+        }
+
+        // ============================================================
+        //  NAVIGATION
+        // ============================================================
+        function navigateTo(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(`page-${page}`);
+            if (target) target.classList.add('active');
+
+            document.querySelectorAll('.bottom-nav a').forEach(a => a.classList.remove('active'));
+            const navLink = document.querySelector(`.bottom-nav a[data-page="${page}"]`);
+            if (navLink) navLink.classList.add('active');
+
+            if (page === 'members') loadMembers();
+            if (page === 'profile') {
+                loadUserStats();
+                if (currentUser) {
+                    document.getElementById('profileDisplayName').textContent = currentUser.username;
+                    document.getElementById('profileBio').textContent = currentUser.bio || 'هیچ بیوگرافی وارد نشده';
+                    if (currentUser.isAdmin) document.getElementById('profileVerified').classList.remove('hidden');
+                    else document.getElementById('profileVerified').classList.add('hidden');
+                }
+            }
+            if (page === 'pv') {
+                loadPVBadge();
+                if (!selectedPVUser) {
+                    document.getElementById('pvChatBox').style.display = 'none';
+                    const users = getAll('users');
+                    users.then(us => {
+                        const list = document.getElementById('pvUserList');
+                        let html = '<div style="margin-bottom:8px;font-size:13px;color:rgba(255,255,255,0.3);"><i class="fas fa-user-plus"></i> انتخاب کاربر برای چت:</div>';
+                        for (const u of us) {
+                            if (u.id === currentUser.id) continue;
+                            const avatarSrc = u.profilePicBlob ? URL.createObjectURL(u.profilePicBlob) : null;
+                            html += `
+                                <div class="member-item" onclick="openPrivateChat(${u.id})" style="cursor:pointer;">
+                                    <div class="member-info">
+                                        <div class="member-avatar">${avatarSrc ? `<img src="${avatarSrc}" />` : '<i class="fas fa-user"></i>'}</div>
+                                        <span class="member-name">${u.username}</span>
+                                    </div>
+                                    <span class="member-status ${u.online ? 'online' : ''}"><i class="fas fa-circle"></i> ${u.online ? 'آنلاین' : 'آفلاین'}</span>
+                                </div>
+                            `;
+                        }
+                        list.innerHTML = html;
+                    });
+                } else {
+                    loadPVChat();
+                }
+            }
+        }
+
+        // ============================================================
+        //  EDIT PROFILE
+        // ============================================================
+        function openEditProfile() {
+            if (!currentUser) return;
+            document.getElementById('editUsername').value = currentUser.username;
+            document.getElementById('editBio').value = currentUser.bio || '';
+            document.getElementById('editProfileModal').classList.add('active');
+        }
+
+        async function saveProfile(e) {
+            e.preventDefault();
+            if (!currentUser) return;
+            const newName = document.getElementById('editUsername').value.trim();
+            const bio = document.getElementById('editBio').value.trim();
+            if (!newName) return showToast('⚠️ نام کاربری را وارد کنید!');
+
+            const users = await getAll('users');
+            const taken = users.some(u => u.username.toLowerCase() === newName.toLowerCase() && u.id !== currentUser.id);
+            if (taken) return showToast('❌ این نام کاربری قبلاً ثبت شده!');
+
+            currentUser.username = newName;
+            currentUser.bio = bio;
+            await putData('users', currentUser);
+            sessionStorage.setItem('forumUser', JSON.stringify(currentUser));
+            showToast('✅ پروفایل به‌روز شد!');
+            closeModal('editProfileModal');
+            await showForum();
+        }
+
+        // ============================================================
+        //  AVATAR UPLOAD (حجم تا ۲ مگابایت)
+        // ============================================================
+        function uploadAvatar(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('⚠️ حجم عکس نباید بیشتر از ۲ مگابایت باشد!');
+                e.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const MAX_SIZE = 200;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_SIZE) {
+                            height = Math.round(height * MAX_SIZE / width);
+                            width = MAX_SIZE;
+                        }
+                    } else {
+                        if (height > MAX_SIZE) {
+                            width = Math.round(width * MAX_SIZE / height);
+                            height = MAX_SIZE;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    canvas.toBlob(async function(blob) {
+                        if (!currentUser) return;
+
+                        if (currentUser._avatarUrl) {
+                            URL.revokeObjectURL(currentUser._avatarUrl);
+                        }
+
+                        currentUser.profilePicBlob = blob;
+                        currentUser.profilePic = null;
+                        await putData('users', currentUser);
+
+                        const url = URL.createObjectURL(blob);
+                        currentUser._avatarUrl = url;
+
+                        document.getElementById('profileAvatar').innerHTML = `<img src="${url}" />`;
+                        document.getElementById('profileAvatarLarge').innerHTML = `<img src="${url}" />`;
+
+                        const sessionUser = JSON.parse(sessionStorage.getItem('forumUser') || '{}');
+                        sessionUser.profilePicBlob = null;
+                        sessionUser._avatarUrl = url;
+                        sessionStorage.setItem('forumUser', JSON.stringify(sessionUser));
+
+                        showToast('✅ عکس پروفایل با موفقیت به‌روز شد!');
+                        e.target.value = '';
+                    }, 'image/jpeg', 0.7);
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ============================================================
+        //  ADMIN PANEL
+        // ============================================================
+        function openAdminPanel() {
+            document.getElementById('adminPanelModal').classList.add('active');
+            document.getElementById('adminPanelInner').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+        }
+
+        async function verifyAdmin() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass !== ADMIN_PASSWORD) return showToast('❌ رمز ادمین اشتباه است!');
+            document.getElementById('adminPanelInner').style.display = 'block';
+            await refreshAdminPanel();
+            showToast('✅ وارد پنل ادمین شدید');
+        }
+
+        async function refreshAdminPanel() {
+            const users = await getAll('users');
+            const container = document.getElementById('adminUserList');
+            let html = '';
+            for (const u of users) {
+                html += `
+                    <div class="admin-user-item">
+                        <span class="uname"><i class="fas fa-user"></i> ${u.username} ${u.isAdmin ? '<i class="fas fa-star" style="color:#ffd700;"></i>' : ''}</span>
+                        <span style="font-size:11px;color:rgba(255,255,255,0.2);">${u.online ? '<i class="fas fa-circle" style="color:#55efc4;"></i> آنلاین' : '<i class="fas fa-circle" style="color:rgba(255,255,255,0.1);"></i> آفلاین'}</span>
+                        <div class="actions">
+                            <button onclick="toggleAdmin(${u.id})">${u.isAdmin ? '<i class="fas fa-user"></i> عادی' : '<i class="fas fa-crown"></i> ادمین'}</button>
+                            <button class="danger" onclick="deleteUser(${u.id})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+
+        async function toggleAdmin(userId) {
+            const user = await getByKey('users', userId);
+            if (!user) return;
+            user.isAdmin = !user.isAdmin;
+            await putData('users', user);
+            await refreshAdminPanel();
+            showToast(`✅ وضعیت ${user.username} به‌روز شد`);
+            if (currentUser && currentUser.id === userId) {
+                currentUser.isAdmin = user.isAdmin;
+                sessionStorage.setItem('forumUser', JSON.stringify(currentUser));
+                await showForum();
+            }
+        }
+
+        async function deleteUser(userId) {
+            if (!confirm('آیا مطمئن هستید؟')) return;
+            const user = await getByKey('users', userId);
+            if (!user) return;
+            if (user.isAdmin && user.id === currentUser?.id) return showToast('❌ نمی‌توانید خودتان را حذف کنید!');
+            await deleteData('users', userId);
+            showToast(`🗑️ کاربر ${user.username} حذف شد`);
+            await refreshAdminPanel();
+            await refreshStats();
+            await loadMembers();
+        }
+
+        // ============================================================
+        //  FILTER & SEARCH
+        // ============================================================
+        let currentFilter = 'all';
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.filter-btn[data-filter="${filter}"]`).classList.add('active');
+            filterTopics();
+        }
+
+        function filterTopics() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.topic-item');
+            items.forEach(item => {
+                const title = item.querySelector('.topic-title')?.textContent?.toLowerCase() || '';
+                const author = item.querySelector('.topic-meta span:first-child')?.textContent?.toLowerCase() || '';
+                let show = true;
+                if (query && !title.includes(query) && !author.includes(query)) show = false;
+
+                if (show && currentFilter !== 'all') {
+                    if (currentFilter === 'new') {
+                        const date = item.querySelector('.topic-meta span:nth-child(2)')?.textContent || '';
+                        if (!date.includes('امروز')) show = false;
+                    } else if (currentFilter === 'hot') {
+                        const badge = item.querySelector('.topic-badge.hot');
+                        if (!badge) show = false;
+                    } else if (currentFilter === 'closed') {
+                        const badge = item.querySelector('.topic-badge.closed');
+                        if (!badge) show = false;
+                    }
+                }
+                item.style.display = show ? 'flex' : 'none';
+            });
+        }
+
+        // ============================================================
+        //  MODAL HELPERS
+        // ============================================================
+        function openNewTopic() {
+            if (!currentUser) return showToast('❌ لطفاً وارد شوید!');
+            if (!currentUser.isAdmin) return showToast('⚠️ فقط ادمین‌ها می‌توانند تاپیک بسازند!');
+            document.getElementById('newTopicModal').classList.add('active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        document.querySelectorAll('.modal-overlay').forEach(el => {
+            el.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('active');
+            });
+        });
+
+        // ============================================================
+        //  TOAST
+        // ============================================================
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            clearTimeout(el._to);
+            el._to = setTimeout(() => el.classList.remove('show'), 3500);
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        window.addEventListener('DOMContentLoaded', async function() {
+            const saved = sessionStorage.getItem('forumUser');
+            if (saved) {
+                try {
+                    const u = JSON.parse(saved);
+                    const user = await getByKey('users', u.id);
+                    if (user) {
+                        currentUser = user;
+                        await showForum();
+                        return;
+                    }
+                } catch (e) {}
+            }
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('forumPage').classList.remove('active');
+            document.getElementById('bottomNav').classList.remove('show');
+
+            const users = await getAll('users');
+            if (users.length === 0) {
+                await putData('users', { username: 'Developer', password: '121226', isAdmin: true, profilePic: null,
+                    profilePicBlob: null, bio: 'مدیر ارشد', createdAt: Date.now(), online: false });
+                console.log('✅ کاربر پیش‌فرض Developer/121226 ساخته شد');
+            }
+        });
+
+        // expose functions globally
+        window.switchTab = switchTab;
+        window.handleSubmit = handleSubmit;
+        window.logout = logout;
+        window.showForum = showForum;
+        window.navigateTo = navigateTo;
+        window.openNewTopic = openNewTopic;
+        window.closeModal = closeModal;
+        window.createTopic = createTopic;
+        window.viewTopic = viewTopic;
+        window.deleteTopic = deleteTopic;
+        window.submitReply = submitReply;
+        window.replyToPost = replyToPost;
+        window.likePost = likePost;
+        window.deletePost = deletePost;
+        window.setFilter = setFilter;
+        window.filterTopics = filterTopics;
+        window.openEditProfile = openEditProfile;
+        window.saveProfile = saveProfile;
+        window.uploadAvatar = uploadAvatar;
+        window.openAdminPanel = openAdminPanel;
+        window.verifyAdmin = verifyAdmin;
+        window.refreshAdminPanel = refreshAdminPanel;
+        window.toggleAdmin = toggleAdmin;
+        window.deleteUser = deleteUser;
+        window.showToast = showToast;
+        window.openPrivateChat = openPrivateChat;
+        window.sendPrivateMessage = sendPrivateMessage;
+        window.loadPVBadge = loadPVBadge;
+        window.loadPVChat = loadPVChat;
+    </script>
+
+</body>
+</html>
